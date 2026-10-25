@@ -7,6 +7,8 @@
 **Geliştirici:** Göktuğ Ezhan Karademir (Kişi 4)  
 **Branch:** `goktug_ezhan_karademir`
 
+</div>
+
 ---
 
 ## 📌 Proje ve Görev Tanımı
