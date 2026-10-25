@@ -4,6 +4,9 @@
 
 **VY-021 | Veri Yapıları Dersi — Dönem Sonu Projesi**
 
+**Geliştirici:** Göktuğ Ezhan Karademir (Kişi 4)  
+**Branch:** `goktug_ezhan_karademir`
+
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Java Swing](https://img.shields.io/badge/Java_Swing-3D7EBF?style=for-the-badge&logoColor=white)
 ![NetBeans](https://img.shields.io/badge/NetBeans_IDE-1B6AC6?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white)
@@ -14,171 +17,68 @@
 
 ---
 
-## 📖 Proje Hakkında
+## 📌 Proje ve Görev Tanımı
 
-Menü ürünlerini, masa siparişlerini ve hazırlama sürecini yöneten bir masaüstü kafe sipariş takip uygulamasıdır.
+Bu depo, İnönü Üniversitesi Bilgisayar Mühendisliği Veri Yapıları dersi kapsamında geliştirilen **Kafe Sipariş Yönetim Sistemi (VY-021)** projesinin **Göktuğ Ezhan Karademir (Kişi 4)** çalışma alanıdır.
 
-Siparişler **üç aşamalı** bir akışla yönetilir:
-
-```
-Bekleyen  →  Hazırlanıyor  →  Tamamlandı
-```
-
-Tüm veriler herhangi bir veritabanı kullanılmadan `.kafe` uzantılı özel bir metin dosyasında saklanır. Program her açılışında bu dosyayı okuyarak veri yapılarına yükler; her değişiklikte bellekteki veri yapısı dosyaya baştan sona yeniden yazılır.
+### 👤 Kişi 4 Sorumluluk Alanı
+* **Kullanıcı Arayüzü (GUI):** Java Swing kullanılarak Menü Yönetimi, Sipariş Alma (Masa + Ürün seçimi) ve Sipariş Takip (Bekleyen / Hazırlanıyor / Tamamlandı) ekranlarının tasarlanması.
+* **Dinamik Liste (ArrayList) Kullanımı:** Kişi 3'ün arama metodundan dönen filtreleme sonuçlarının arayüz tablosuna yansıtılması ve dinamik olarak yönetilmesi.
+* **Modül Entegrasyonu:** Kişi 1 (Veri modelleri, dosya işlemleri, FIFO Kuyruk, Bağlı Liste), Kişi 2 (Sipariş yaşam döngüsü, Harita) ve Kişi 3'ün (Menü yönetimi, sıfırdan sıralama algoritması) yazdığı modüllerin buton ve formlarla birbirine bağlanması.
+* **Dokümantasyon:** Proje kurulum ve kullanım adımları ile yapay zekâ kullanım beyanının hazırlanması.
 
 ---
 
-## ✨ Temel İşlevler
+## 👥 Takım Görev Dağılımı
 
-| İşlem | Açıklama |
-|-------|----------|
-| ➕ **Kaydetme** | Masa numarası ve ürün‑miktar bilgisiyle yeni sipariş oluşturma |
-| 🗑️ **Silme** | Bekleyen siparişi silme; aktif siparişte kullanılmayan menü ürününü kaldırma |
-| ✏️ **Güncelleme** | Ürün fiyatı, bekleyen sipariş içeriği ve sipariş hazırlık durumunu değiştirme |
-| 🔃 **Sıralama** | Siparişleri oluşturulma zamanına veya toplam tutara göre sıralama |
-| 🔍 **Sorgulama** | Sipariş no, masa no, ürün adı ve hazırlık durumuna göre arama |
-
----
-
-## 🏗️ Kullanılan Veri Yapıları
-
-| Veri Yapısı | Kullanım Yeri | Sorumlu |
-|-------------|---------------|---------|
-| **Kuyruk (Queue)** | Bekleyen sipariş sırası — ilk gelen ilk hazırlanır | Kişi 1 |
-| **Bağlı Liste (LinkedList)** | Menü ürünleri listesi | Kişi 1 |
-| **Harita (HashMap)** | Sipariş no ve masa no bazlı hızlı erişim | Kişi 2 |
-| **Dinamik Liste (ArrayList)** | Arama sonuçlarının tutulması | Kişi 4 |
-| **Sıralama Algoritması** | Sipariş sıralama — sıfırdan uygulanmış | Kişi 3 |
-
-> Tüm veri yapıları, ders kapsamında gerekli görüldüğü ölçüde sıfırdan geliştirilmiştir.
+| Kişi | Sorumlu | Odak Alanı & Temel Veri Yapısı |
+| :--- | :--- | :--- |
+| **Kişi 1** | Mustafa Tıraş | Veri Modelleri, `.kafe` Dosya Okuma/Yazma, Kuyruk (FIFO), Bağlı Liste |
+| **Kişi 2** | Zeynep Turhan | Sipariş İşlemleri, `birimFiyatAninda` Sabitleme, Harita (HashMap) |
+| **Kişi 3** | Fatma Nisa Gedik | Menü Yönetimi, Çok Kriterli Arama, Sıfırdan Sıralama Algoritması |
+| **Kişi 4** | Göktuğ Ezhan Karademir | GUI (Java Swing), Dinamik Liste (ArrayList), Entegrasyon, README |
 
 ---
 
-## 📂 Proje Yapısı
+## 📅 Çalışma Takvimi & İlerleme
+
+### 🔹 Hafta 1 — Hazırlık, Teori ve Temel İskelet
+- [x] Proje gereksinimlerinin ve kural analiz raporunun (VY-021) incelenmesi.
+- [x] Geçmiş Java OOP ve temel programlama çalışma notlarının derlenip `calismalarim/` klasörüne aktarılması.
+- [ ] Projede yer alan veri yapılarının teorik mantığının kavranması:
+  - **Kuyruk (Queue - FIFO):** Siparişlerin geliş sırasıyla mutfağa alınması mantığı.
+  - **Bağlı Liste (LinkedList):** Menü ürünlerinin dinamik eklenip çıkarılması.
+  - **Harita (HashMap):** Sipariş ve masa numaralarıyla hızlı arama mekanizması.
+  - **Dinamik Liste (ArrayList):** Arama sonuçlarının dinamik boyutta saklanıp tabloya yansıtılması (Kişi 4 mülakat savunması).
+- [ ] Java Swing arayüz bileşenlerinin (JFrame, JPanel, JTable, JButton, JTextField) ve ekran düzenlerinin planlanması.
+- [ ] Kişi 1, 2 ve 3'ün servis iskeletleri tamamlanana kadar arayüzün test edilebilmesi için sahte (mock) veri yapısının kurgulanması.
+
+---
+
+## 📂 Dizin Yapısı
 
 ```
-kafe-siparis-sistemi/
+Kafe-Yonetim/
 │
-├── src/
-│   ├── model/
-│   │   ├── MenuUrun.java           # Menü ürünü veri modeli
-│   │   ├── Siparis.java            # Sipariş veri modeli
-│   │   ├── SiparisDetay.java       # Sipariş satırı (ürün + miktar + anlık fiyat)
-│   │   └── SiparisDurumu.java      # Enum: BEKLEYEN / HAZIRLANIYOR / TAMAMLANDI
-│   │
-│   ├── veriYapilari/
-│   │   ├── Kuyruk.java             # FIFO kuyruk uygulaması
-│   │   ├── BagliListe.java         # Bağlı liste uygulaması
-│   │   ├── Harita.java             # Anahtar-değer harita uygulaması
-│   │   └── DinamikListe.java       # Dinamik dizi uygulaması
-│   │
-│   ├── servis/
-│   │   ├── SiparisServisi.java     # Sipariş oluşturma, güncelleme, silme mantığı
-│   │   ├── MenuServisi.java        # Menü yönetimi, arama ve sıralama
-│   │   └── DosyaServisi.java       # .kafe dosyası okuma ve yazma
-│   │
-│   └── gui/
-│       ├── AnaPencere.java         # Ana uygulama penceresi
-│       ├── SiparisPanel.java       # Sipariş oluşturma ve takip ekranı
-│       ├── MenuPanel.java          # Menü yönetimi ekranı
-│       └── AramaPanel.java         # Arama ve sıralama ekranı
+├── calismalarim/               # Java temel çalışma notları ve kişisel pratikler
+│   ├── 01-Temel-Kavramlar/
+│   ├── 02-Degiskenler/
+│   ├── 03-VeriAlma/
+│   ├── 04-Switch-Case/
+│   ├── 05-Dİzi/
+│   ├── 05-Encapsulation(Kapsülleme)&Inheritance(Kalıtım)/
+│   ├── Class/
+│   └── Örnekler/
 │
-├── veri/
-│   ├── veriler.kafe                # Uygulama veri dosyası
-│   └── ornek.kafe                  # Örnek veri (ilk çalıştırma için)
-│
-└── README.md
+├── README.md                   # Kişisel çalışma planı ve proje dokümantasyonu
+├── VY-021 — MVP Planı.pdf      # Proje MVP yol haritası
+└── VY-021 Kafe Sipariş...pdf   # Proje ve kural analiz raporu
 ```
 
 ---
 
-## 👥 Takım
+## ⚠️ Proje Kuralları & Akademik Dürüstlük
 
-| # | Ad Soyad | Görev | Zorluk |
-|---|----------|-------|--------|
-| Kişi 1 | Ad Soyad | Temel Veri Katmanı: Veri Yapıları + Dosya Okuma/Yazma | 9/10 |
-| Kişi 2 | Ad Soyad | Sipariş İşleme: Oluşturma, Durum Yönetimi, Harita | 8/10 |
-| Kişi 3 | Ad Soyad | Menü Yönetimi + Arama + Sıralama Algoritması | 6/10 |
-| Kişi 4 | Ad Soyad | GUI Tasarımı + Uygulama Entegrasyonu + README | 8/10 |
-
----
-
-## 🚀 Kurulum ve Çalıştırma
-
-### Gereksinimler
-
-- Java 21 veya üzeri
-- NetBeans IDE (önerilen) ya da herhangi bir Java IDE
-
-### Adımlar
-
-**1. Repoyu klonlayın:**
-```bash
-git clone https://github.com/KULLANICI/REPO-ADI.git
-```
-
-**2. NetBeans ile açın:**
-```
-File → Open Project → İndirilen klasörü seçin
-```
-
-**3. Projeyi çalıştırın:**
-```
-Run → Run Project   (ya da F6)
-```
-
-### İlk Çalıştırma
-
-Program ilk açıldığında `veri/veriler.kafe` dosyası yoksa otomatik olarak boş bir dosya oluşturulur. Hazır örnek verilerle başlamak için `veri/ornek.kafe` dosyasını `veriler.kafe` olarak kopyalayın.
-
----
-
-## 📁 Veri Dosyası Formatı
-
-Tüm veriler `.kafe` uzantılı düz metin dosyasında tutulur. Her satır bir kaydı temsil eder:
-
-```
-MENU|1|Filtre Kahve|45.0
-MENU|2|Cappuccino|55.0
-SIPARIS|1001|3|2026-10-13 14:30|BEKLEYEN
-DETAY|1001|1|2|45.0
-DETAY|1001|2|1|55.0
-```
-
-| Önek | Alanlar |
-|------|---------|
-| `MENU` | id \| ad \| fiyat |
-| `SIPARIS` | siparisNo \| masaNo \| tarih \| durum |
-| `DETAY` | siparisNo \| urunId \| miktar \| birimFiyatAninda |
-
-> **Önemli:** `birimFiyatAninda` alanı siparişin verildiği andaki fiyatı saklar. Menüdeki fiyat sonradan değişse de eski siparişler etkilenmez.
-
----
-
-## 🤖 Yapay Zeka ve Dış Kaynak Kullanımı
-
-| Araç / Kaynak | Kullanım Amacı | Etkilenen Bölüm |
-|---------------|----------------|-----------------|
-| Claude (Anthropic) | Proje planlama, README taslağı, kavram açıklaması | Genel |
-
-> ⚠️ **Not:** Yapay zeka araçlarından alınan hiçbir kod doğrudan kopyalanmamıştır. Tüm kodlar, araçlardan yalnızca öğrenme ve kavrama amacıyla yararlanılarak öğrenciler tarafından sıfırdan yeniden yazılmıştır.
-
----
-
-## 📄 Ders Bilgisi
-
-| Alan | Bilgi |
-|------|-------|
-| Ders | Veri Yapıları |
-| Proje Kodu | VY-021 |
-| Dönem | 2025–2026 Güz |
-| Üniversite | İnönü Üniversitesi |
-| Başvuru E-postası | inonubmveriyapilari@gmail.com |
-
----
-
-<div align="center">
-
-İnönü Üniversitesi · Veri Yapıları Dersi · 2026
-
-</div>
+* **Veritabanı Yasağı:** SQLite, MySQL vb. herhangi bir veritabanı kesinlikle kullanılmayacaktır. Tüm kalıcılık `.kafe` uzantılı düz metin dosyası üzerinden sağlanacaktır.
+* **Hazır Sıralama Kütüphanesi Yasağı:** Java'nın `Collections.sort()` veya `Arrays.sort()` metotları kullanılmayacak, sıralama algoritması sıfırdan yazılacaktır.
+* **Yapay Zekâ Kullanım İlkesi:** Yapay zekâ araçları (Claude, Gemini vb.) yalnızca kavram öğrenme, mimari planlama, hata analizi ve soru-cevap rehberliği amacıyla kullanılmaktadır. Projedeki hiçbir kod yapay zekâdan doğrudan kopyalanıp yapıştırılmayacak; öğrenci tarafından adım adım yazılarak ve tam olarak kavranarak geliştirilecektir.

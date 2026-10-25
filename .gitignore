@@ -1,0 +1,12 @@
+# PDF belgeleri (Yerel rehber dosyalar)
+*.pdf
+
+# Derleme çıktıları ve IDE ayarları
+*.class
+out/
+target/
+build/
+.idea/
+*.iml
+.vscode/
+.DS_Store
