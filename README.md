@@ -1,184 +1,102 @@
-<div align="center">
+Menü Yönetimi, Arama ve Sıralama Modülü
 
-# ☕ Kafe Sipariş Yönetim Sistemi
+VY-021 Kafe Sipariş Yönetim Sistemi projesinin bir parçasıdır.
 
-**VY-021 | Veri Yapıları Dersi — Dönem Sonu Projesi**
-
-![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![Java Swing](https://img.shields.io/badge/Java_Swing-3D7EBF?style=for-the-badge&logoColor=white)
-![NetBeans](https://img.shields.io/badge/NetBeans_IDE-1B6AC6?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
-
-</div>
+| | |
+|---|---|
+| Sorumlu | Fatma Nisa Gedik (Kişi 3) |
+| Modül | Menü yönetimi + Arama + Sıralama |
+| Proje aşaması | Faz 3 (Faz 2 ile paralel yürütülür) |
+| Dal (branch) | `fatma_nisa_gedik` |
 
 ---
 
-## 📖 Proje Hakkında
+ 1. Modülün Amacı
 
-Menü ürünlerini, masa siparişlerini ve hazırlama sürecini yöneten bir masaüstü kafe sipariş takip uygulamasıdır.
+Kafenin menüsünü güncel tutmak, garsonun aradığı siparişi hızlıca bulabilmesini sağlamak ve siparişleri istenen ölçüte göre sıralamak.
 
-Siparişler **üç aşamalı** bir akışla yönetilir:
+Bu modül diğer modüllerden büyük ölçüde bağımsız çalışır. Sadece şu noktalarda ekip arkadaşlarımın kodunu kullanır:
 
-```
-Bekleyen  →  Hazırlanıyor  →  Tamamlandı
-```
-
-Tüm veriler herhangi bir veritabanı kullanılmadan `.kafe` uzantılı özel bir metin dosyasında saklanır. Program her açılışında bu dosyayı okuyarak veri yapılarına yükler; her değişiklikte bellekteki veri yapısı dosyaya baştan sona yeniden yazılır.
+- Kişi 1: `MenuUrun`, `SiparisDetay`, `Siparis` sınıfları ve menü için bağlı liste
+- Kişi 2: Sipariş oluşturma ve durum geçişleri (aktif siparişlerin bilgisi)
+- Kişi 4: Arayüz. Arama sonuçlarını `ArrayList` olarak ona teslim ederim, tabloya o basar.
 
 ---
 
-## ✨ Temel İşlevler
+ 2. Görevlerim
 
-| İşlem | Açıklama |
-|-------|----------|
-| ➕ **Kaydetme** | Masa numarası ve ürün‑miktar bilgisiyle yeni sipariş oluşturma |
-| 🗑️ **Silme** | Bekleyen siparişi silme; aktif siparişte kullanılmayan menü ürününü kaldırma |
-| ✏️ **Güncelleme** | Ürün fiyatı, bekleyen sipariş içeriği ve sipariş hazırlık durumunu değiştirme |
-| 🔃 **Sıralama** | Siparişleri oluşturulma zamanına veya toplam tutara göre sıralama |
-| 🔍 **Sorgulama** | Sipariş no, masa no, ürün adı ve hazırlık durumuna göre arama |
+ 2.1 Menü Yönetimi
+
+| İşlev | Açıklama |
+|---|---|
+| Ürün ekle | Yeni ürün (örn. Filtre Kahve) Kişi 1'in bağlı listesine yeni düğüm olarak eklenir. |
+| Fiyat güncelle | Menüdeki ürünün fiyatı değişir. Eski siparişler etkilenmez, çünkü fiyat sipariş anında `birimFiyatAninda` alanına kaydedilir. |
+| Ürün sil | Ürün aktif bir siparişte kullanılıyorsa silinmez ve kullanıcıya uyarı gösterilir. Kullanılmıyorsa listeden çıkarılır. |
+
+2.2 Arama ve Filtreleme
+
+Aşağıdaki ölçütlere göre sipariş araması yapılır. Sonuçlar `ArrayList` olarak döndürülür.
+
+- Sipariş numarası
+- Masa numarası
+- Ürün adı (örn. içinde "Latte" geçen siparişler)
+- Durum (Bekleyen / Hazırlanıyor / Tamamlandı)
+
+ 2.3 Sıralama
+
+Siparişler iki ölçüte göre sıralanabilir:
+
+- Sipariş oluşturulma zamanı
+- Toplam tutar
+
+> Kural: Java'nın hazır sıralama metotları (`Collections.sort()` vb.) kullanılmaz. Sıralama algoritması (Bubble Sort) sıfırdan, döngülerle elle yazılır.
+
+---
+ 3. Kullanılan Veri Yapıları ve Nedenleri
+
+| Yapı | Nerede | Neden |
+|---|---|---|
+| Bağlı Liste (Kişi 1'in yazdığı) | Menü ürünleri | Ortaya ürün eklemek veya çıkarmak sadece bağlantıları değiştirmeyi gerektirir. |
+| `ArrayList` | Arama sonuçları | Sonuç sayısı her aramada değişir. Liste kolayca temizlenip yeniden doldurulabilir. |
+| Bubble Sort (elle yazılmış) | Sıralama | Yan yana iki elemanı karşılaştırıp büyüğü sağa kaydıran, anlaşılması kolay bir algoritmadır. |
+
+Bubble Sort Nasıl Çalışır?
+
+1. Listede yan yana duran iki sipariş karşılaştırılır.
+2. Sırası yanlışsa yerleri değiştirilir.
+3. Bu işlem listenin sonuna kadar tekrarlanır. Her turda en büyük eleman sona yerleşir.
+4. Bir turda hiç yer değişikliği olmazsa liste sıralanmıştır ve algoritma durur.
 
 ---
 
-## 🏗️ Kullanılan Veri Yapıları
+ 4. Proje Kuralları (Bu Modülü İlgilendirenler)
 
-| Veri Yapısı | Kullanım Yeri | Sorumlu |
-|-------------|---------------|---------|
-| **Kuyruk (Queue)** | Bekleyen sipariş sırası — ilk gelen ilk hazırlanır | Kişi 1 |
-| **Bağlı Liste (LinkedList)** | Menü ürünleri listesi | Kişi 1 |
-| **Harita (HashMap)** | Sipariş no ve masa no bazlı hızlı erişim | Kişi 2 |
-| **Dinamik Liste (ArrayList)** | Arama sonuçlarının tutulması | Kişi 4 |
-| **Sıralama Algoritması** | Sipariş sıralama — sıfırdan uygulanmış | Kişi 3 |
-
-> Tüm veri yapıları, ders kapsamında gerekli görüldüğü ölçüde sıfırdan geliştirilmiştir.
+- Veritabanı kullanılmaz. Veriler özel uzantılı metin dosyasında (`.kafe`) tutulur.
+- Program açılışında veriler dosyadan belleğe yüklenir. Arama, sıralama ve güncelleme işlemleri bellekteki veri yapısı üzerinde yapılır.
+- Her değişiklikten sonra veri dosyaya baştan sona yeniden yazılır.
+- Tüm girişler ve sonuçlar arayüz (GUI) üzerinden gösterilir, terminal çıktısı kullanılmaz.
 
 ---
 
-## 📂 Proje Yapısı
+ 5. Yapılacaklar Listesi
 
-```
-kafe-siparis-sistemi/
-│
-├── src/
-│   ├── model/
-│   │   ├── MenuUrun.java           # Menü ürünü veri modeli
-│   │   ├── Siparis.java            # Sipariş veri modeli
-│   │   ├── SiparisDetay.java       # Sipariş satırı (ürün + miktar + anlık fiyat)
-│   │   └── SiparisDurumu.java      # Enum: BEKLEYEN / HAZIRLANIYOR / TAMAMLANDI
-│   │
-│   ├── veriYapilari/
-│   │   ├── Kuyruk.java             # FIFO kuyruk uygulaması
-│   │   ├── BagliListe.java         # Bağlı liste uygulaması
-│   │   ├── Harita.java             # Anahtar-değer harita uygulaması
-│   │   └── DinamikListe.java       # Dinamik dizi uygulaması
-│   │
-│   ├── servis/
-│   │   ├── SiparisServisi.java     # Sipariş oluşturma, güncelleme, silme mantığı
-│   │   ├── MenuServisi.java        # Menü yönetimi, arama ve sıralama
-│   │   └── DosyaServisi.java       # .kafe dosyası okuma ve yazma
-│   │
-│   └── gui/
-│       ├── AnaPencere.java         # Ana uygulama penceresi
-│       ├── SiparisPanel.java       # Sipariş oluşturma ve takip ekranı
-│       ├── MenuPanel.java          # Menü yönetimi ekranı
-│       └── AramaPanel.java         # Arama ve sıralama ekranı
-│
-├── veri/
-│   ├── veriler.kafe                # Uygulama veri dosyası
-│   └── ornek.kafe                  # Örnek veri (ilk çalıştırma için)
-│
-└── README.md
-```
+- [ ] Menüye ürün ekleme fonksiyonu
+- [ ] Menüden ürün silme fonksiyonu
+- [ ] Aktif siparişte olan ürünün silinmesini engelleyen kontrol
+- [ ] Ürün fiyatı güncelleme (eski siparişler korunacak şekilde)
+- [ ] Sipariş no, masa no, ürün adı ve duruma göre arama
+- [ ] Zamana göre sıralama (Bubble Sort)
+- [ ] Tutara göre sıralama (Bubble Sort)
+- [ ] Arayüz ekranına (arama/menü paneli) bağlama
+- [ ] Ekip arkadaşlarının modülleriyle entegrasyon testi
 
 ---
 
-## 👥 Takım
+ 6. Ekip
 
-| # | Ad Soyad | Görev | Zorluk |
-|---|----------|-------|--------|
-| Kişi 1 | Ad Soyad | Temel Veri Katmanı: Veri Yapıları + Dosya Okuma/Yazma | 9/10 |
-| Kişi 2 | Ad Soyad | Sipariş İşleme: Oluşturma, Durum Yönetimi, Harita | 8/10 |
-| Kişi 3 | Ad Soyad | Menü Yönetimi + Arama + Sıralama Algoritması | 6/10 |
-| Kişi 4 | Ad Soyad | GUI Tasarımı + Uygulama Entegrasyonu + README | 8/10 |
-
----
-
-## 🚀 Kurulum ve Çalıştırma
-
-### Gereksinimler
-
-- Java 21 veya üzeri
-- NetBeans IDE (önerilen) ya da herhangi bir Java IDE
-
-### Adımlar
-
-**1. Repoyu klonlayın:**
-```bash
-git clone https://github.com/KULLANICI/REPO-ADI.git
-```
-
-**2. NetBeans ile açın:**
-```
-File → Open Project → İndirilen klasörü seçin
-```
-
-**3. Projeyi çalıştırın:**
-```
-Run → Run Project   (ya da F6)
-```
-
-### İlk Çalıştırma
-
-Program ilk açıldığında `veri/veriler.kafe` dosyası yoksa otomatik olarak boş bir dosya oluşturulur. Hazır örnek verilerle başlamak için `veri/ornek.kafe` dosyasını `veriler.kafe` olarak kopyalayın.
-
----
-
-## 📁 Veri Dosyası Formatı
-
-Tüm veriler `.kafe` uzantılı düz metin dosyasında tutulur. Her satır bir kaydı temsil eder:
-
-```
-MENU|1|Filtre Kahve|45.0
-MENU|2|Cappuccino|55.0
-SIPARIS|1001|3|2026-10-13 14:30|BEKLEYEN
-DETAY|1001|1|2|45.0
-DETAY|1001|2|1|55.0
-```
-
-| Önek | Alanlar |
-|------|---------|
-| `MENU` | id \| ad \| fiyat |
-| `SIPARIS` | siparisNo \| masaNo \| tarih \| durum |
-| `DETAY` | siparisNo \| urunId \| miktar \| birimFiyatAninda |
-
-> **Önemli:** `birimFiyatAninda` alanı siparişin verildiği andaki fiyatı saklar. Menüdeki fiyat sonradan değişse de eski siparişler etkilenmez.
-
----
-
-## 🤖 Yapay Zeka ve Dış Kaynak Kullanımı
-
-| Araç / Kaynak | Kullanım Amacı | Etkilenen Bölüm |
-|---------------|----------------|-----------------|
-| Claude (Anthropic) | Proje planlama, README taslağı, kavram açıklaması | Genel |
-
-> ⚠️ **Not:** Yapay zeka araçlarından alınan hiçbir kod doğrudan kopyalanmamıştır. Tüm kodlar, araçlardan yalnızca öğrenme ve kavrama amacıyla yararlanılarak öğrenciler tarafından sıfırdan yeniden yazılmıştır.
-
----
-
-## 📄 Ders Bilgisi
-
-| Alan | Bilgi |
-|------|-------|
-| Ders | Veri Yapıları |
-| Proje Kodu | VY-021 |
-| Dönem | 2025–2026 Güz |
-| Üniversite | İnönü Üniversitesi |
-| Başvuru E-postası | inonubmveriyapilari@gmail.com |
-
----
-
-<div align="center">
-
-İnönü Üniversitesi · Veri Yapıları Dersi · 2026
-
-</div>
+| Kişi | Sorumluluk |
+|---|---|
+| Kişi 1 | Veri yapıları, kuyruk, bağlı liste, dosya okuma/yazma |
+| Kişi 2 | Sipariş mantığı, FIFO, durum geçişleri |
+| Kişi 3 (Fatma Nisa Gedik) | Menü yönetimi, arama, sıralama |
+| Kişi 4 | Arayüz ve entegrasyon |
