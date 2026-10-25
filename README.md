@@ -29,17 +29,6 @@ Bu depo, İnönü Üniversitesi Bilgisayar Mühendisliği Veri Yapıları dersi 
 
 ---
 
-## 👥 Takım Görev Dağılımı
-
-| Kişi | Sorumlu | Odak Alanı & Temel Veri Yapısı |
-| :--- | :--- | :--- |
-| **Kişi 1** | Mustafa Tıraş | Veri Modelleri, `.kafe` Dosya Okuma/Yazma, Kuyruk (FIFO), Bağlı Liste |
-| **Kişi 2** | Zeynep Turhan | Sipariş İşlemleri, `birimFiyatAninda` Sabitleme, Harita (HashMap) |
-| **Kişi 3** | Fatma Nisa Gedik | Menü Yönetimi, Çok Kriterli Arama, Sıfırdan Sıralama Algoritması |
-| **Kişi 4** | Göktuğ Ezhan Karademir | GUI (Java Swing), Dinamik Liste (ArrayList), Entegrasyon, README |
-
----
-
 ## 📅 Çalışma Takvimi & İlerleme
 
 ### 🔹 Hafta 1 — Hazırlık, Teori ve Temel İskelet
