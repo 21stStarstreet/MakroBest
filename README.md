@@ -19,7 +19,7 @@
 
 ## 📌 Proje ve Görev Tanımı
 
-Bu depo, İnönü Üniversitesi Bilgisayar Mühendisliği Veri Yapıları dersi kapsamında geliştirilen **Kafe Sipariş Yönetim Sistemi (VY-021)** projesinin **Göktuğ Ezhan Karademir (Kişi 4)** çalışma alanıdır.
+Bu depo, Veri Yapıları dersi kapsamında geliştirilen **Kafe Sipariş Yönetim Sistemi (VY-021)** projesinin **Göktuğ Ezhan Karademir** çalışma alanıdır.
 
 ### 👤 Kişi 4 Sorumluluk Alanı
 * **Kullanıcı Arayüzü (GUI):** Java Swing kullanılarak Menü Yönetimi, Sipariş Alma (Masa + Ürün seçimi) ve Sipariş Takip (Bekleyen / Hazırlanıyor / Tamamlandı) ekranlarının tasarlanması.
@@ -31,7 +31,7 @@ Bu depo, İnönü Üniversitesi Bilgisayar Mühendisliği Veri Yapıları dersi 
 
 ## 📅 Çalışma Takvimi & İlerleme
 
-### 🔹 Hafta 1 — Hazırlık, Teori ve Temel İskelet
+### 🔹 Hafta 1 — Hazırlık
 - [x] Proje gereksinimlerinin ve kural analiz raporunun (VY-021) incelenmesi.
 - [x] Geçmiş Java OOP ve temel programlama çalışma notlarının derlenip `calismalarim/` klasörüne aktarılması.
 - [ ] Projede yer alan veri yapılarının teorik mantığının kavranması:
