@@ -7,14 +7,6 @@
 **Geliştirici:** Göktuğ Ezhan Karademir (Kişi 4)  
 **Branch:** `goktug_ezhan_karademir`
 
-![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![Java Swing](https://img.shields.io/badge/Java_Swing-3D7EBF?style=for-the-badge&logoColor=white)
-![NetBeans](https://img.shields.io/badge/NetBeans_IDE-1B6AC6?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
-
-</div>
-
 ---
 
 ## 📌 Proje ve Görev Tanımı
