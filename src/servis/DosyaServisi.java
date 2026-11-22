@@ -15,7 +15,7 @@ import java.util.Date;
  * Proje şartı olarak verinin hepsi baştan yazılır.
  */
 
-punlic class DosyaServisi {
+public class DosyaServisi {
     private static final String DOSYA_YOLU = "veri/veriler.kafe";
     private static final SimpleDateFormat TARIH_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
