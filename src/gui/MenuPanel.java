@@ -48,7 +48,7 @@ public class MenuPanel extends JPanel {
         baslik.setForeground(Tema.METIN_BIRINCIL);
 
         JPanel form = new JPanel(new FlowLayout(FlowLayout.LEFT, Tema.BOSLUK_12, 0));
-        form.setOpaque(false);
+        form.setBackground(Tema.YUZEY);
 
         txtUrunAdi = Tema.metinKutusuOlustur(16);
         txtFiyat = Tema.metinKutusuOlustur(7);
@@ -110,7 +110,8 @@ public class MenuPanel extends JPanel {
         });
 
         JScrollPane kaydirma = new JScrollPane(tabloMenu);
-        Tema.kaydirmaPaneliHazirla(kaydirma);
+        kaydirma.setBorder(BorderFactory.createLineBorder(Tema.KENARLIK, 1));
+        kaydirma.getViewport().setBackground(Tema.YUZEY);
 
         kart.add(baslik, BorderLayout.NORTH);
         kart.add(kaydirma, BorderLayout.CENTER);

@@ -52,7 +52,7 @@ public class SiparisPanel extends JPanel {
         formBaslik.setForeground(Tema.METIN_BIRINCIL);
 
         JPanel alanlar = new JPanel(new FlowLayout(FlowLayout.LEFT, Tema.BOSLUK_12, 0));
-        alanlar.setOpaque(false);
+        alanlar.setBackground(Tema.YUZEY);
 
         txtMasaNo = Tema.metinKutusuOlustur(5);
         txtMasaNo.setText("4");
@@ -62,10 +62,12 @@ public class SiparisPanel extends JPanel {
             "Çay - 15.00 TL"
         };
         cmbUrunler = new JComboBox<>(ornekUrunler);
-        Tema.acilirListeHazirla(cmbUrunler);
+        cmbUrunler.setFont(Tema.METIN_NORMAL);
+        cmbUrunler.setBackground(Tema.YUZEY);
 
         spnMiktar = new JSpinner(new SpinnerNumberModel(1, 1, 50, 1));
-        Tema.sayacHazirla(spnMiktar);
+        spnMiktar.setFont(Tema.METIN_NORMAL);
+        spnMiktar.setPreferredSize(new Dimension(64, 30));
 
         JButton btnOlustur = Tema.butonBirincil("Sipariş oluştur");
         btnOlustur.addActionListener(e -> ornekSiparisEkle());
@@ -130,26 +132,40 @@ public class SiparisPanel extends JPanel {
         JPanel kart = Tema.kartOlustur(Tema.BOSLUK_16);
         kart.setLayout(new BorderLayout(0, Tema.BOSLUK_12));
 
-        // Başlık + pürüzsüz yuvarlak durum noktası
+        // Başlık + düz yuvarlak durum noktası
         JPanel ust = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
-        ust.setOpaque(false);
+        ust.setBackground(Tema.YUZEY);
+
+        JPanel nokta = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2 = (Graphics2D) g;
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(durumRengi);
+                g2.fillOval(0, 0, 10, 10);
+            }
+        };
+        nokta.setBackground(Tema.YUZEY);
+        nokta.setPreferredSize(new Dimension(10, 10));
 
         JLabel lblBaslik = new JLabel(baslik);
         lblBaslik.setFont(Tema.BASLIK_ORTA);
         lblBaslik.setForeground(Tema.METIN_BIRINCIL);
 
-        ust.add(Tema.durumNoktasi(durumRengi));
+        ust.add(nokta);
         ust.add(lblBaslik);
 
         JScrollPane kaydirma = new JScrollPane(tablo);
-        Tema.kaydirmaPaneliHazirla(kaydirma);
+        kaydirma.setBorder(BorderFactory.createLineBorder(Tema.KENARLIK, 1));
+        kaydirma.getViewport().setBackground(Tema.YUZEY);
 
         kart.add(ust, BorderLayout.NORTH);
         kart.add(kaydirma, BorderLayout.CENTER);
 
         if (butonlar.length > 0) {
             JPanel altButonlar = new JPanel(new FlowLayout(FlowLayout.LEFT, Tema.BOSLUK_8, 0));
-            altButonlar.setOpaque(false);
+            altButonlar.setBackground(Tema.YUZEY);
             for (JButton b : butonlar) {
                 altButonlar.add(b);
             }
