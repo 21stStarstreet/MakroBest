@@ -1,0 +1,92 @@
+# Gizli dosyalar
+.env
+*.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Sanal ortam
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Veri dosyaları — Gerçek hasta verisi ve ham veri setleri asla git'e girmez!
+data/
+datasets/
+*.csv
+*.xlsx
+*.xls
+*.docx
+*.parquet
+
+# Model artifact'ları (büyük dosyalar)
+models/artifacts/
+*.pkl
+*.joblib
+*.model
+*.json.gz
+
+# Loglar
+*.log
+logs/
+audit.db
+*.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Raporlar
+reports/*.png
+reports/*.html
+
+# Klinik kılavuz PDF'leri — telif hakkı korumalı, repo'ya girmez
+docs/guidelines/
+*.pdf
+
+# RAG vector database — tek seferlik indexleme ile lokal üretilir
+rag/chroma_db/
+
+# .NET build artifact'ları — repo'ya girmez
+cdss_web/bin/
+cdss_web/obj/
+
+#agents
+.agents/
+
+# SDK / IDE Telemetry & Artifacts
+Library/
+**/Library/
+.local/
+**/.local/
+
+# macOS
+.DS_Store
+**/.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Standalone Playground & Showcase
+pulsar_glass/
+
+#reports
+reports/
+*.class
